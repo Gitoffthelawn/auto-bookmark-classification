@@ -1,2 +1,38 @@
-# auto-bookmark-classification
-Auto Bookmark Classification: Effortlessly and automatically organize your bookmarks into pre-selected folders based on each site's domain.
+# Auto Bookmark Classification
+
+![Auto Bookmark Classification](https://github.com/SexyWerewolf/auto-bookmark-classification/blob/main/demo.png?raw=true)
+
+## Overview
+**Auto Bookmark Classification** is a Firefox add-on designed to streamline your bookmark management. This tool allows you to automatically classify and save bookmarks into pre-selected folders based on the domain of the website. Say goodbye to cluttered bookmarks and enjoy a more organized browsing experience!
+
+## Features
+- **Automatic Folder Assignment**: The addon remembers the folder you choose for a particular domain and automatically selects it the next time you save a bookmark from the same domain.
+- **Visual Feedback**: The save button changes color to indicate the status:
+  - **Blue**: No pre-selected folder or existing bookmark.
+  - **Green**: Pre-selected folder is identified for the domain.
+  - **Red**: The URL is already bookmarked in the selected folder.
+- **Page Title as Bookmark Name**: Automatically uses the page's title as the name for the bookmark, instead of the URL.
+
+## How It Works
+1. **Select a Folder**: When you save a bookmark, choose the desired folder. The addon will remember this folder for the domain.
+2. **Save a Bookmark**: The bookmark will be saved with the page title as its name. The next time you save a bookmark from the same domain, the pre-selected folder will be automatically chosen.
+3. **Color Indicators**: The save button color will provide visual cues about the bookmark's status.
+
+## Installation
+To install the addon:
+1. Download the [latest version](https://github.com/SexyWerewolf/auto-bookmark-classification/releases) from GitHub.
+2. Open Firefox and go to `about:addons`.
+3. Click on "Install Add-on From File" and select the downloaded `.xpi` file.
+
+## License
+This project is licensed under the MIT License. Please check the `LICENSE` file for more information.
+
+## Contributing
+Feel free to fork the repository and submit pull requests. Contributions are welcome!
+
+## Contact
+For issues, suggestions, or any questions, please open an issue on GitHub or contact the project maintainer.
+
+---
+
+Thank you for using **Auto Bookmark Classification**! Enjoy a more organized and efficient browsing experience.
