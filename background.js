@@ -40,3 +40,23 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
         sendResponse({ folderName });
     }
 });
+browser.commands.onCommand.addListener((command) => {
+    if (command === "save-or-open") {
+        browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
+            const url = tabs[0].url;
+            const title = tabs[0].title;
+            const domain = getDomain(url);
+            const folderName = domainToFolderMap[domain];
+            if (folderName) {
+                saveBookmark(url, title, folderName);
+            } else {
+                browser.tabs.create({
+                    url: browser.extension.getURL("popup.html"),
+                    active: true
+                }).catch(error => {
+                    console.error("Failed to open popup:", error);
+                });
+            }
+        });
+    }
+});

@@ -2,6 +2,22 @@ document.addEventListener("DOMContentLoaded", () => {
     loadFolders();
     const folderSelect = document.getElementById("folderSelect");
     const folderNameInput = document.getElementById("folderName");
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    browser.storage.local.get("darkModeEnabled").then(data => {
+        if (data.darkModeEnabled) {
+            document.body.classList.add("dark-mode");
+            darkModeToggle.checked = true;
+        }
+    });
+    darkModeToggle.addEventListener("change", () => {
+        if (darkModeToggle.checked) {
+            document.body.classList.add("dark-mode");
+            browser.storage.local.set({ darkModeEnabled: true });
+        } else {
+            document.body.classList.remove("dark-mode");
+            browser.storage.local.set({ darkModeEnabled: false });
+        }
+    });
     browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
         const url = tabs[0].url;
         const title = tabs[0].title;

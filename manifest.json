@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Auto Bookmark Classification",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Automatically classifies bookmarks based on the domain.",
   "permissions": [
     "bookmarks",
@@ -19,5 +19,13 @@
   },
   "icons": {
     "64": "icon16.png"
+  },
+  "commands": {
+    "save-or-open": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F"
+      },
+      "description": "Save bookmark or open popup if folder is unknown"
+    }
   }
 }
