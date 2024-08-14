@@ -7,16 +7,12 @@
 
 ## Features
 - **Automatic Folder Assignment**: The addon remembers the folder you choose for a particular domain and automatically selects it the next time you save a bookmark from the same domain.
-- **Visual Feedback**: The save button changes color to indicate the status:
-  - **Blue**: No pre-selected folder or existing bookmark.
-  - **Green**: Pre-selected folder is identified for the domain.
-  - **Red**: The URL is already bookmarked in the selected folder.
 - **Page Title as Bookmark Name**: Automatically uses the page's title as the name for the bookmark, instead of the URL.
+- **Shortcut Key Added**: Added a shortcut key (`Ctrl+Shift+F`) to quickly save bookmarks or open the add-on popup if the folder is unknown.
 
 ## How It Works
 1. **Select a Folder**: When you save a bookmark, choose the desired folder. The addon will remember this folder for the domain.
 2. **Save a Bookmark**: The bookmark will be saved with the page title as its name. The next time you save a bookmark from the same domain, the pre-selected folder will be automatically chosen.
-3. **Color Indicators**: The save button color will provide visual cues about the bookmark's status.
 
 ## Installation
 To install the addon:
