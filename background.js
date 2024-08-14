@@ -51,7 +51,7 @@ browser.commands.onCommand.addListener((command) => {
                 saveBookmark(url, title, folderName);
             } else {
                 browser.tabs.create({
-                    url: browser.extension.getURL("popup.html"),
+                    url: browser.runtime.getURL("popup.html"),
                     active: true
                 }).catch(error => {
                     console.error("Failed to open popup:", error);
