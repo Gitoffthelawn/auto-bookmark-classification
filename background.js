@@ -15,7 +15,6 @@ function saveBookmark(url, title, folderName) {
         if (results.length === 0) {
             browser.bookmarks.search({ title: folderName }).then((folders) => {
                 let folderId = folders.find(folder => folder.title === folderName && !folder.url)?.id;
-
                 if (!folderId) {
                     browser.bookmarks.create({ title: folderName }).then((newFolder) => {
                         folderId = newFolder.id;
@@ -43,18 +42,21 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
 browser.commands.onCommand.addListener((command) => {
     if (command === "save-or-open") {
         browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
-            const url = tabs[0].url;
-            const title = tabs[0].title;
+            const activeTab = tabs[0];
+            const url = activeTab.url;
+            const title = activeTab.title;
             const domain = getDomain(url);
             const folderName = domainToFolderMap[domain];
             if (folderName) {
                 saveBookmark(url, title, folderName);
             } else {
-                browser.tabs.create({
-                    url: browser.runtime.getURL("popup.html"),
-                    active: true
-                }).catch(error => {
-                    console.error("Failed to open popup:", error);
+                browser.storage.local.set({ savedTab: { url, title } }).then(() => {
+                    browser.tabs.create({
+                        url: browser.runtime.getURL("popup.html"),
+                        active: true
+                    }).catch(error => {
+                        console.error("Failed to open popup:", error);
+                    });
                 });
             }
         });

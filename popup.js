@@ -18,31 +18,36 @@ document.addEventListener("DOMContentLoaded", () => {
             browser.storage.local.set({ darkModeEnabled: false });
         }
     });
-    browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
-        const url = tabs[0].url;
-        const title = tabs[0].title;
-        browser.runtime.sendMessage({
-            action: "getFolderForDomain",
-            url
-        }).then((response) => {
-            if (response.folderName) {
-                folderNameInput.value = response.folderName;
-                folderSelect.value = response.folderName;
-            }
-        });
-        document.getElementById("saveButton").addEventListener("click", () => {
-            const folderName = folderNameInput.value;
+    browser.storage.local.get("savedTab").then(data => {
+        const savedTab = data.savedTab;
+        if (savedTab) {
+            const url = savedTab.url;
+            const title = savedTab.title;
             browser.runtime.sendMessage({
-                action: "saveBookmark",
-                url,
-                title,
-                folderName
+                action: "getFolderForDomain",
+                url
             }).then((response) => {
-                if (response.success) {
-                    window.close();
+                if (response.folderName) {
+                    folderNameInput.value = response.folderName;
+                    folderSelect.value = response.folderName;
                 }
             });
-        });
+            document.getElementById("saveButton").addEventListener("click", () => {
+                const folderName = folderNameInput.value;
+                browser.runtime.sendMessage({
+                    action: "saveBookmark",
+                    url,
+                    title,
+                    folderName
+                }).then((response) => {
+                    if (response.success) {
+                        window.close();
+                    }
+                });
+            });
+        } else {
+            console.error("No saved tab found.");
+        }
     });
     folderSelect.addEventListener("change", () => {
         folderNameInput.value = folderSelect.value;

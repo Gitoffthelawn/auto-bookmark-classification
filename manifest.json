@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Auto Bookmark Classification",
-  "version": "1.1",
+  "version": "1.1.1",
   "description": "Automatically classifies bookmarks based on the domain.",
   "permissions": [
     "bookmarks",
