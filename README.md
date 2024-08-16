@@ -8,7 +8,7 @@
 ## Features
 - **Automatic Folder Assignment**: The addon remembers the folder you choose for a particular domain and automatically selects it the next time you save a bookmark from the same domain.
 - **Page Title as Bookmark Name**: Automatically uses the page's title as the name for the bookmark, instead of the URL.
-- **Shortcut Key Added**: Added a shortcut key (`Ctrl+Shift+F`) to quickly save bookmarks or open the add-on popup if the folder is unknown.
+- **Shortcut Key Added**: Added a shortcut key (`Ctrl+Shift+F`) to quickly save bookmarks.
 
 ## How It Works
 1. **Select a Folder**: When you save a bookmark, choose the desired folder. The addon will remember this folder for the domain.
