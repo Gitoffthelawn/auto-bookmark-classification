@@ -5,10 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <title>Auto Bookmark Classification</title>
+  <style>
+    .warning-message {
+      color: red;
+      display: none; /* Initially hidden */
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h3>Save Bookmark</h3>
+    <div id="noFolderMessage" class="warning-message">No folder selected. Please select or enter a folder before saving.</div>
     <label for="folderName">Select or enter folder:</label>
     <select id="folderSelect" class="form-control">
       <option value="">Select a folder...</option>

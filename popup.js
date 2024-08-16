@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const folderSelect = document.getElementById("folderSelect");
     const folderNameInput = document.getElementById("folderName");
     const darkModeToggle = document.getElementById("darkModeToggle");
+    const noFolderMessage = document.getElementById("noFolderMessage");
     browser.storage.local.get("darkModeEnabled").then(data => {
         if (data.darkModeEnabled) {
             document.body.classList.add("dark-mode");
@@ -18,22 +19,25 @@ document.addEventListener("DOMContentLoaded", () => {
             browser.storage.local.set({ darkModeEnabled: false });
         }
     });
-    browser.storage.local.get("savedTab").then(data => {
-        const savedTab = data.savedTab;
-        if (savedTab) {
-            const url = savedTab.url;
-            const title = savedTab.title;
-            browser.runtime.sendMessage({
-                action: "getFolderForDomain",
-                url
-            }).then((response) => {
-                if (response.folderName) {
-                    folderNameInput.value = response.folderName;
-                    folderSelect.value = response.folderName;
-                }
-            });
-            document.getElementById("saveButton").addEventListener("click", () => {
-                const folderName = folderNameInput.value;
+    browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
+        const url = tabs[0].url;
+        const title = tabs[0].title;
+        browser.runtime.sendMessage({
+            action: "getFolderForDomain",
+            url
+        }).then((response) => {
+            if (response.folderName) {
+                folderNameInput.value = response.folderName;
+                folderSelect.value = response.folderName;
+            } else {
+                noFolderMessage.style.display = 'block';
+            }
+        }).catch(error => {
+            console.error("Failed to get folder for domain:", error);
+        });
+        document.getElementById("saveButton").addEventListener("click", () => {
+            const folderName = folderNameInput.value || folderSelect.value;
+            if (folderName) {
                 browser.runtime.sendMessage({
                     action: "saveBookmark",
                     url,
@@ -44,13 +48,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         window.close();
                     }
                 });
-            });
-        } else {
-            console.error("No saved tab found.");
-        }
+            } else {
+                noFolderMessage.style.display = 'block';
+            }
+        });
     });
     folderSelect.addEventListener("change", () => {
         folderNameInput.value = folderSelect.value;
+        noFolderMessage.style.display = 'none';
     });
 });
 function loadFolders() {

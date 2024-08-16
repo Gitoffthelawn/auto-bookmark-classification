@@ -1,12 +1,13 @@
 {
   "manifest_version": 2,
   "name": "Auto Bookmark Classification",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "description": "Automatically classifies bookmarks based on the domain.",
   "permissions": [
     "bookmarks",
     "storage",
-    "tabs"
+    "tabs",
+    "notifications"
   ],
   "background": {
     "scripts": ["background.js"]
@@ -14,11 +15,11 @@
   "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "64": "icon16.png"
+      "16": "icon16.png"
     }
   },
   "icons": {
-    "64": "icon16.png"
+    "16": "icon16.png"
   },
   "commands": {
     "save-or-open": {

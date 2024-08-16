@@ -101,3 +101,13 @@ body.dark-mode button.preselected {
 body.dark-mode button.existing {
   background-color: #c82333;
 }
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.warning-message {
+  color: red;
+  display: none;
+  margin-bottom: 10px;
+}
