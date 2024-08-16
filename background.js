@@ -9,7 +9,7 @@ function showNotification(message) {
         type: "basic",
         title: "Auto Bookmark Classification",
         message: message,
-        iconUrl: browser.runtime.getURL("icon16.png")
+        iconUrl: browser.runtime.getURL("icon64.png")
     });
 }
 function setIcon(iconPath) {
@@ -50,12 +50,12 @@ browser.commands.onCommand.addListener((command) => {
             const folderName = domainToFolderMap[domain];
             if (folderName) {
                 saveBookmark(url, title, folderName);
-                setIcon("icon16.png");
+                setIcon("icon64.png");
             } else {
                 showNotification("No default folder selected. Please choose or create a folder.");
                 setIcon("icon.gif");
                 setTimeout(() => {
-                    setIcon("icon16.png");
+                    setIcon("icon64.png");
                 }, 10000); //
             }
         }).catch(error => {
@@ -64,7 +64,7 @@ browser.commands.onCommand.addListener((command) => {
     }
 });
 browser.browserAction.onClicked.addListener(() => {
-    setIcon("icon16.png");
+    setIcon("icon64.png");
 });
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === "saveBookmark") {
