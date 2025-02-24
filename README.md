@@ -15,7 +15,7 @@
 2. **Save a Bookmark**: The bookmark will be saved with the page title as its name. The next time you save a bookmark from the same domain, the pre-selected folder will be automatically chosen.
 
 ## Installation
-To install the addon:
+To install the add-on, [click the `Add to Firefox` button in this add-on's AMO page](https://addons.mozilla.org/firefox/addon/auto-bookmark-classification/), or:  
 1. Download the [latest version](https://github.com/SexyWerewolf/auto-bookmark-classification/releases) from GitHub.
 2. Open Firefox and go to `about:addons`.
 3. Click on "Install Add-on From File" and select the downloaded `.xpi` file.
